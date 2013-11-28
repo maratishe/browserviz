@@ -1,0 +1,18 @@
+$.ioutils.nolog = true; var $floor; var $holder;
+$( 'body').css({ 'font-size': $.io.font.normal})
+var L1 = $.ttl( '100x100,200x200,500x500,1000x500,2000x1200,5000x3000');
+var L2 = $.ttl( '0.25,0.5,0.75,1.0,1.25,1.5,1.75,2.0');
+var S = 'screen sizes '; for ( var i in L1) S += ' -- <strong>' + L1[ i] + '</strong>';
+$( 'body').ioover( true).css({ 'z-index': 100000}).append( S).find( 'strong').iotextbutton( function( size) { 
+	var vs = $.ttl( size, 'x');
+	$holder.mapper( parseInt( vs[ 0]), parseInt( vs[ 1]), $.mapCANVAS, DATA, function( $box) { $floor = $box; }, function() { })
+})
+S = 'scales'; for ( var i in L2) S += ' -- <strong>' + L2[ i] + '</strong>';
+$( 'body').ioover( true).css({ 'z-index': 100000}).append( S).find( 'strong').iotextbutton( function( scale) { 
+	var v = 'scale(' + scale + ', ' + scale + ')';
+	$floor.css({ transform: v, '-ms-transform': v, '-webkit-transform': v})
+})
+$holder = $( 'body').ioover( true)
+$holder.mapper( 100, 100, $.mapSVG, DATA, function( $box) { $floor = $box; }, function() { })
+
+
